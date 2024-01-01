@@ -3,7 +3,7 @@
 
 #Welcome
 
-This Project is created with [Create Expo App] (https://expo.dev/).
+This Project is created with [Create Expo App](https://expo.dev/).
 Here we will start with the frontend of a short video platform app similar to tiktok or instagram reels.
 
 ##Getting Started
