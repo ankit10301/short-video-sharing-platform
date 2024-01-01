@@ -1,5 +1,8 @@
 ![Version](https://img.shields.io/badge/version-0.1-blue.svg?cacheSeconds=2592000)
+![](https://img.shields.io/badge/react-grey?logo=react)
 [![runs with expo](https://img.shields.io/badge/Runs%20with%20Expo-000.svg?style=flat-square&logo=EXPO&labelColor=f3f3f3&logoColor=000)](https://expo.io/)
+![](https://img.shields.io/badge/android-grey?logo=android)
+![](https://img.shields.io/badge/-grey?logo=ios)
 
 # Welcome
 
