@@ -1,33 +1,34 @@
 import React, { useRef, useState } from "react";
-import { Button, Dimensions, TouchableHighlight, View, TouchableWithoutFeedback, TouchableOpacity, ToastAndroid, Text, ScrollView } from "react-native";
+import { View, TouchableWithoutFeedback, TouchableOpacity, ToastAndroid, ScrollView, StatusBar } from "react-native";
 import { Video, ResizeMode } from 'expo-av';
 import Icon from 'react-native-vector-icons/FontAwesome';
-//import { ScrollView } from "react-native-gesture-handler";
-import { videoUrlList } from "./DummyData";
+import { videoUrlList } from "../DummyData";
+import styles from "./styles";
+import { WINDOW_HEIGHT, SCREEN_HEIGHT, WINDOW_WIDTH, BOTTOM_NAVIGATION_HEIGHT } from "../../contants";
 
 const Feed = props => {
 
 	const [videoStatus, setVideoStatus] = useState({});
 	const [autoplay, setAutoplay] = useState(false);
 	const [currentVideo, setCurrentVideo] = useState(1);
-	const [videoUrls, setVideoUrls] = useState(videoUrlList)
-
-	
+	const [videoUrls, setVideoUrls] = useState(videoUrlList)	
 
 	const videoRefs = useRef([]);
-	const windowWidth = Dimensions.get('window').width;
-	const windowHeight = Dimensions.get('window').height;
+
+	const backgroundColorPallette = ['blue', 'pink', 'green', 'yellow', 'red'];
+	const windowHeight = (WINDOW_HEIGHT + StatusBar.currentHeight) === SCREEN_HEIGHT ? WINDOW_HEIGHT - StatusBar.currentHeight : WINDOW_HEIGHT;
+	const FEED_PAGE_HEIGHT = windowHeight - BOTTOM_NAVIGATION_HEIGHT;
 
 	const handleMomentumScrollEnd = event => {
 		// const position = event.contentOffset;
-		const index = Math.round(event.nativeEvent.contentOffset.y / windowHeight) + 1;
+		const index = Math.round(event.nativeEvent.contentOffset.y / FEED_PAGE_HEIGHT) + 1;
 		if(index !== currentVideo){
 			setCurrentVideo(index);
 		}
 	}
 
 	return (
-		<View>
+		<View style={styles.feedContainer}>
 			<ScrollView
 				pagingEnabled={true}
 				onMomentumScrollEnd={handleMomentumScrollEnd}
@@ -42,7 +43,7 @@ const Feed = props => {
 							>
 								<Video
 									ref={e => videoRefs.current[index] = e}
-									style={{ height: windowHeight, width: windowWidth }}
+									style={{ ...styles.feedVideo, backgroundColor:  backgroundColorPallette[index%5]}}
 									source={{
 										uri: videoData.sources,
 									}}
@@ -60,10 +61,11 @@ const Feed = props => {
 									//useNativeControls
 									resizeMode={ResizeMode.CONTAIN}
 									isLooping
+									//usePoster
 									onPlaybackStatusUpdate={status => setVideoStatus(() => status)}
 								/>
 							</TouchableWithoutFeedback>
-							<View style={{ position: 'absolute', height: windowHeight, width: windowWidth }}>
+							<View style={styles.feedVideoIcons}>
 								<View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-end', gap: 20 }}>
 									<TouchableOpacity onPress={() => ToastAndroid.show('Heart', ToastAndroid.SHORT)}>
 										<Icon name="heart-o" size={25} color='white' />

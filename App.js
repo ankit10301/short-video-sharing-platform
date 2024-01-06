@@ -1,5 +1,6 @@
 import { SafeAreaView, StyleSheet, Text, View, StatusBar } from 'react-native';
-import Feed from './src/screens/Feed';
+import Feed from './src/screens/Feed/Feed';
+import BottomNavigation from './src/components/BottomNavigation';
 
 export default function App() {
   return (
@@ -7,8 +8,12 @@ export default function App() {
       <StatusBar
         backgroundColor="#000"
         barStyle="light-content"
+        translucent={false}
       />
-      <Feed />
+      <SafeAreaView>
+        <Feed style={styles.feed}/>
+        <BottomNavigation />
+      </SafeAreaView>
     </View>
   );
 }
@@ -20,4 +25,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  feed: {
+  }
 });
