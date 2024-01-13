@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Profile from './src/screens/Profile/Profile';
+import Explore from './src/screens/Explore/Explore';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,8 +20,9 @@ export default function App() {
       />
         <NavigationContainer>
           <Tab.Navigator tabBar={BottomNavigation} initialRouteName='Feed'>
-            <Tab.Screen name="Feed" component={Feed} options={{ headerShown: false }}/>
-            <Tab.Screen name="Profile" component={Profile} options={{ headerShown: false }}/>
+            <Tab.Screen name="Feed" component={Feed} options={{ headerShown: false }} />
+            <Tab.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
+            <Tab.Screen name='Explore' component={Explore} options={{ headerShown: false}} />
           </Tab.Navigator>
         </NavigationContainer>
     </Provider>
