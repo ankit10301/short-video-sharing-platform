@@ -1,19 +1,24 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { View, TouchableWithoutFeedback, TouchableOpacity, ToastAndroid, ScrollView, StatusBar } from "react-native";
 import { Video, ResizeMode } from 'expo-av';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useRoute, useIsFocused } from "@react-navigation/native";
 import { videoUrlList } from "../DummyData";
 import styles from "./styles";
-import { WINDOW_HEIGHT, SCREEN_HEIGHT, WINDOW_WIDTH, BOTTOM_NAVIGATION_HEIGHT } from "../../contants";
+import { WINDOW_HEIGHT, SCREEN_HEIGHT, WINDOW_WIDTH, BOTTOM_NAVIGATION_HEIGHT } from "../../constants";
 
 const Feed = props => {
 
 	const [videoStatus, setVideoStatus] = useState({});
 	const [autoplay, setAutoplay] = useState(false);
 	const [currentVideo, setCurrentVideo] = useState(1);
-	const [videoUrls, setVideoUrls] = useState(videoUrlList)	
+	const [videoUrls, setVideoUrls] = useState(videoUrlList);
+	const [currentPageFlag, setCurrentPageFlag] = useState(false);
 
 	const videoRefs = useRef([]);
+
+	const route = useRoute();
+	const isFocused = useIsFocused();
 
 	const backgroundColorPallette = ['blue', 'pink', 'green', 'yellow', 'red'];
 	const windowHeight = (WINDOW_HEIGHT + StatusBar.currentHeight) === SCREEN_HEIGHT ? WINDOW_HEIGHT - StatusBar.currentHeight : WINDOW_HEIGHT;
@@ -57,7 +62,7 @@ const Feed = props => {
 											setVideoUrls([...tempVideoUrls]);
 										}
 									}}
-									shouldPlay={currentVideo === videoData.id && videoData.isLoaded}
+									shouldPlay={currentVideo === videoData.id && videoData.isLoaded && isFocused}
 									//useNativeControls
 									resizeMode={ResizeMode.CONTAIN}
 									isLooping

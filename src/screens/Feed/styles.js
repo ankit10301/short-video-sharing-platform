@@ -1,5 +1,5 @@
 import { StyleSheet, StatusBar } from "react-native";
-import { WINDOW_HEIGHT, SCREEN_HEIGHT, WINDOW_WIDTH, BOTTOM_NAVIGATION_HEIGHT } from '../../contants';
+import { WINDOW_HEIGHT, SCREEN_HEIGHT, WINDOW_WIDTH, BOTTOM_NAVIGATION_HEIGHT } from '../../constants';
 
 const windowWidth = WINDOW_WIDTH;
 const windowHeight = (WINDOW_HEIGHT + StatusBar.currentHeight) === SCREEN_HEIGHT ? WINDOW_HEIGHT - StatusBar.currentHeight : WINDOW_HEIGHT;

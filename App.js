@@ -3,22 +3,27 @@ import Feed from './src/screens/Feed/Feed';
 import BottomNavigation from './src/components/BottomNavigation';
 import { store } from './src/Redux/Store';
 import { Provider } from 'react-redux';
+import {NavigationContainer} from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Profile from './src/screens/Profile/Profile';
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <Provider store={store} style={styles.container}>
       <StatusBar
         backgroundColor="#000"
         barStyle="light-content"
         translucent={false}
       />
-      <Provider store={store}>
-        <SafeAreaView>
-          <Feed style={styles.feed}/>
-          <BottomNavigation />
-        </SafeAreaView>
-      </Provider>
-    </View>
+        <NavigationContainer>
+          <Tab.Navigator tabBar={BottomNavigation} initialRouteName='Feed'>
+            <Tab.Screen name="Feed" component={Feed} options={{ headerShown: false }}/>
+            <Tab.Screen name="Profile" component={Profile} options={{ headerShown: false }}/>
+          </Tab.Navigator>
+        </NavigationContainer>
+    </Provider>
   );
 }
 
@@ -29,6 +34,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  feed: {
-  }
 });
