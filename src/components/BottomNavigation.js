@@ -8,17 +8,29 @@ const BottomNavigation = props => {
 	return (
 		<View style={styles.container}>
 			<TouchableOpacity onPress={() => props.navigation.navigate('Feed')}>
-				<Icon style={styles.navButton} name="home" size={25} color='white' />
+				<View style={styles.navButton}>
+					<Icon name="home" size={25} color='white' />
+				</View>
 			</TouchableOpacity>
 			<TouchableOpacity onPress={() => props.navigation.navigate('Explore')}>
-				<Icon style={styles.navButton} name="search" size={25} color='white' />
+				<View style={styles.navButton}>
+					<Icon name="search" size={25} color='white' />
+				</View>
 			</TouchableOpacity>
-			<Icon style={styles.navButton} name="plus" size={25} color='white' />
-			<MIcon style={styles.navButton} name="chat-bubble-outline" size={25} color='white' />
-			<TouchableOpacity
-				onPress={() => props.navigation.navigate('Profile')}
-			>
-				<Icon style={styles.navButton} name="user-o" size={25} color='white' />
+			<TouchableOpacity onPress={() => {}}>
+				<View style={styles.navButton}>
+					<Icon name="plus" size={25} color='white' />
+				</View>
+			</TouchableOpacity>
+			<TouchableOpacity onPress={() => {}}>
+				<View style={styles.navButton}>
+					<MIcon name="chat-bubble-outline" size={25} color='white' />
+				</View>
+			</TouchableOpacity>
+			<TouchableOpacity onPress={() => props.navigation.navigate('Profile')}>
+				<View style={styles.navButton}>
+					<Icon name="user-o" size={25} color='white' />
+				</View>
 			</TouchableOpacity>
 		</View>
 	)
@@ -34,7 +46,11 @@ const styles = StyleSheet.create({
 		backgroundColor: '#000'
 	},
 	navButton: {
-		// flex: 1
+		width: WINDOW_WIDTH / 5,
+		height: BOTTOM_NAVIGATION_HEIGHT,
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center'
 	}
 })
 
