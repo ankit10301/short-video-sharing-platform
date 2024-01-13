@@ -10,7 +10,9 @@ const BottomNavigation = props => {
 			<TouchableOpacity onPress={() => props.navigation.navigate('Feed')}>
 				<Icon style={styles.navButton} name="home" size={25} color='white' />
 			</TouchableOpacity>
-			<Icon style={styles.navButton} name="search" size={25} color='white' />
+			<TouchableOpacity onPress={() => props.navigation.navigate('Explore')}>
+				<Icon style={styles.navButton} name="search" size={25} color='white' />
+			</TouchableOpacity>
 			<Icon style={styles.navButton} name="plus" size={25} color='white' />
 			<MIcon style={styles.navButton} name="chat-bubble-outline" size={25} color='white' />
 			<TouchableOpacity
