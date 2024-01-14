@@ -17,7 +17,7 @@ const BottomNavigation = props => {
 					<Icon name="search" size={25} color='white' />
 				</View>
 			</TouchableOpacity>
-			<TouchableOpacity onPress={() => {}}>
+			<TouchableOpacity onPress={() => props.navigation.navigate('Create')}>
 				<View style={styles.navButton}>
 					<Icon name="plus" size={25} color='white' />
 				</View>
