@@ -14,11 +14,11 @@ Here we will start with the frontend of a short video platform app similar to ti
 1. Open Command prompt and follow the following commands
 2. Clone the project with
    ```sh
-   git clone https://github.com/ankit10301/short-video.git
+   git clone https://github.com/ankit10301/short-video-sharing-platform.git
    ```
 3. Move inside the repository
    ```sh
-   cd short-video
+   cd short-video-sharing-platform
    ```
 4. Install the dependencies
    ```sh
