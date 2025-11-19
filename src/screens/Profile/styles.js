@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
-import { WINDOW_WIDTH, SCREEN_HEIGHT_WITHOUT_BOTTTOM_NAVBAR } from "../../constants";
+import { WINDOW_WIDTH, SCREEN_HEIGHT_WITHOUT_BOTTOM_NAVBAR } from "../../constants";
 
 const styles = StyleSheet.create({
 	profileContainer: {
 		backgroundColor: '#000',
-    height: SCREEN_HEIGHT_WITHOUT_BOTTTOM_NAVBAR,
+    height: SCREEN_HEIGHT_WITHOUT_BOTTOM_NAVBAR,
     width: WINDOW_WIDTH,
     padding: 10
 	},

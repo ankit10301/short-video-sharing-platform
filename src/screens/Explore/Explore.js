@@ -27,7 +27,7 @@ const Explore = props => {
         <ScrollView>
           {
             category.map(data => (
-              <View style={styles.categoryContainer} key={Math.random()}>
+              <View key={Math.random()} style={styles.categoryContainer}>
                 <View style={styles.category}>
                   <View style={styles.categoryTitleContainer}>
                     <Text style={styles.categoryTitle}>{data}</Text>
@@ -35,7 +35,7 @@ const Explore = props => {
                   <View style={styles.tilesContainer}>
                     {
                       [1,2,3,4].map(tilesData => (
-                        <View style={styles.tilesData}>
+                        <View key={Math.random()} style={styles.tilesData}>
                           <Text>{tilesData}</Text>
                         </View>
                       ))

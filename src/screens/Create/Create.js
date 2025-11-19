@@ -32,18 +32,35 @@ const Create = props => {
   }, [])
 
   const getPermissions = async () => {
-    const cameraStatus = await Camera.requestCameraPermissionsAsync();
-    setHasCameraPermissions(cameraStatus.status == 'granted');
+    try {
+      const cameraStatus = await Camera.requestCameraPermissionsAsync();
+      setHasCameraPermissions(cameraStatus.status === 'granted');
 
-    const audioStatus = await Audio.requestPermissionsAsync();
-    setHasAudioPermissions(audioStatus.status == 'granted');
+      const audioStatus = await Audio.requestPermissionsAsync();
+      setHasAudioPermissions(audioStatus.status === 'granted');
+      const galleryStatus = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      const mediaLibStatus = await MediaLibrary.requestPermissionsAsync();
+      const granted = mediaLibStatus.status === 'granted';
 
-    const galleryStatus = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    setHasGalleryPermissions(galleryStatus.status == 'granted');
+      setHasGalleryPermissions(galleryStatus.status === 'granted' || granted);
 
-    if (galleryStatus.status == 'granted') {
-      const userGalleryMedia = await MediaLibrary.getAssetsAsync({ sortBy: ['creationTime'], mediaType: ['video'] });
-      setGalleryItems(userGalleryMedia.assets);
+      if (granted) {
+        try {
+          const userGalleryMedia = await MediaLibrary.getAssetsAsync({
+            sortBy: ['creationTime'],
+            mediaType: ['video'],
+            first: 50,
+          });
+          setGalleryItems(userGalleryMedia.assets || []);
+        } catch (err) {
+          console.warn('MediaLibrary.getAssetsAsync failed', err);
+          setGalleryItems([]);
+        }
+      } else {
+        console.warn('Media library permission not granted');
+      }
+    } catch (err) {
+      console.warn('getPermissions error', err);
     }
   }
 

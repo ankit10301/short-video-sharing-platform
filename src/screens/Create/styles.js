@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
-import { SCREEN_HEIGHT_WITHOUT_BOTTTOM_NAVBAR } from '../../constants';
+import { SCREEN_HEIGHT_WITHOUT_BOTTOM_NAVBAR } from '../../constants';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        height: SCREEN_HEIGHT_WITHOUT_BOTTTOM_NAVBAR,
+        height: SCREEN_HEIGHT_WITHOUT_BOTTOM_NAVBAR,
     },
     camera: {
         flex: 1,
